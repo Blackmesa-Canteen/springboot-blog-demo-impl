@@ -20,14 +20,14 @@ public class IndexController {
         return "index";
     }
 
-    @GetMapping("/{id}/{name}")
-    public String test(@PathVariable Integer id, @PathVariable String name) {
-//        int i = 9/0;
-//        String blog = null;
-//        if (blog == null) {
-//            throw new NotFoundException("The blog not exist!");
-//        }
-        System.out.println("----------index---------");
-        return "index";
-    }
+//    @GetMapping("/{id}/{name}")
+//    public String test(@PathVariable Integer id, @PathVariable String name) {
+////        int i = 9/0;
+////        String blog = null;
+////        if (blog == null) {
+////            throw new NotFoundException("The blog not exist!");
+////        }
+//        System.out.println("----------index---------");
+//        return "index";
+//    }
 }
