@@ -20,6 +20,37 @@ public class IndexController {
         return "index";
     }
 
+    @GetMapping("/blog")
+    public String blog() {
+        return "blog";
+    }
+
+    @GetMapping("/archive")
+    public String archive() {
+        return "archive";
+    }
+
+
+    @GetMapping("/about")
+    public String about() {
+        return "about";
+    }
+
+    @GetMapping("/categories")
+    public String categories() {
+        return "categories";
+    }
+
+    @GetMapping("/labels")
+    public String labels() {
+        return "Labels";
+    }
+
+    @GetMapping("/admin/blog-input")
+    public String blogInput() {
+        return "/admin/blog-input";
+    }
+
 //    @GetMapping("/{id}/{name}")
 //    public String test(@PathVariable Integer id, @PathVariable String name) {
 ////        int i = 9/0;
