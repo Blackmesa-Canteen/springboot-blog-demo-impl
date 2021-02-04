@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/spring_boot_blog_demo?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: root
+    password:
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+
+
+#logging:
+#  config: src/main/resources/logback-spring.xml
+#  level:
+#    root: warn
+#    com.learn.blog_demo: info
+#  file:
+#    path: log/blog-pro.log
+
+server:
+  port: 8081
+
+
+

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/my.css">
+</head>
+<body>
+
+    <!-- 导航 Nav -->
+    <nav class="ui inverted attached segment m-padded-tb-mini m-shadow-small" >
+        <div class="ui container">
+            <div class="ui inverted secondary stackable menu">
+                <h2 class="ui teal header item">Blog Demo</h2>
+                <a href="#" class="m-item item m-mobile-hide"><i class="home icon"></i>Index</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="idea icon"></i>Categories</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="tags icon"></i>Labels</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="clone icon"></i>Archive</a>
+                <a href="#" class="active m-item item m-mobile-hide"><i class="info icon"></i>About</a>
+                <div class="right m-item item m-mobile-hide">
+                    <div class="ui icon input transparent inverted">
+                        <input type="text" placeholder="Search...">
+                        <i class="search icon link "></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="ui menu toggle black button icon m-right-top m-mobile-show">
+            <i class="sidebar icon"></i>
+        </a>
+    </nav>
+
+     <!--中间内容 content-->
+    <div class="m-padded-tb-big m-container">
+        <div class="ui container">
+            <div class="ui stackable grid">
+                <!-- content left -->
+                <div class="eleven wide column">
+                    <div class="ui segment">
+                        <img src="https://unsplash.it/800/450?image=233" alt="" class="ui rounded image">
+                    </div>
+                </div>
+
+                <!-- content right -->
+                <div class="five wide column">
+                    <div class="ui top attached segment">
+                        <div class="ui header">About</div>
+                    </div>
+                    <div class="ui attached segment">
+                        <p class="m-text">DEMO是"demonstration"的缩写。DEMO的中文含意为“示范”、“展示”、“样片”、“样稿”、“原型”，常被用来称呼具有示范或展示功能及意味的事物。</p>
+                        <p class="m-text">在电脑公司，可以看到电脑上展示介绍电脑软硬件的程式，这些属于商业性质的demo；这些demo是凭借图形与音乐来吸引顾客，达到宣传的目的。</p>
+                    </div>
+                    <div class="ui attached segment">
+                        <div class="ui orange basic left pointing label m-margin-tb-tiny">Eating</div>
+                        <div class="ui orange basic left pointing label m-margin-tb-tiny">Sleeping</div>
+                        <div class="ui orange basic left pointing label m-margin-tb-tiny">Playing</div>
+                        <div class="ui orange basic left pointing label m-margin-tb-tiny">Dreaming</div>
+                    </div>
+                    <div class="ui attached segment">
+                        <div class="ui teal basic left pointing label m-margin-tb-tiny">机械加工</div>
+                        <div class="ui teal basic left pointing label m-margin-tb-tiny">CAD出图</div>
+                        <div class="ui teal basic left pointing label m-margin-tb-tiny">车工</div>
+                        <div class="ui teal basic left pointing label m-margin-tb-tiny">钳工</div>
+                    </div>
+                    <div class="ui bottom attached segment">
+                        <a href="#" class="ui circular icon button"><i class="github icon"></i></a>
+                        <a href="#" class="ui wechat circular icon button"><i class="weixin icon"></i></a>
+                        <a href="#" class="ui qq circular icon button" data-content="1234567" data-position="bottom center"><i class="qq icon"></i></a>
+                    </div>
+                    <!-- popup QR code-->
+                    <div class="ui wechat-qr flowing popup transition hidden">
+                        <img src="../static/images/996QRcode.png" alt="" class="ui rounded image" style="width: 120px">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <!-- bottom footer -->
+    <footer class="ui inverted vertical segment m-padded-tb-massive">
+        <div class="ui center aligned container">
+            <div class="ui inverted divided stackable grid">
+                <div class="three wide column">
+                    <div class="ui inverted link list">
+                        <div class="item">
+                            <img src="../static/images/demo1.jpg" class="ui rounded image" alt="" style="width: 80px">
+                        </div>
+                    </div>
+                </div>
+                <div class="three wide column">
+                    <h4 class="ui inverted header">Latest blogs</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item">content1</a>
+                        <a href="#" class="item">content2</a>
+                        <a href="#" class="item">content3</a>
+                    </div>
+                </div>
+                <div class="three wide column">
+                    <h4 class="ui inverted header">Contect Me</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item">content1</a>
+                        <a href="#" class="item">content2</a>
+                        <a href="#" class="item">content3</a>
+                    </div>
+                </div>
+                <div class="seven wide column">
+                    <h4 class="ui inverted header">Acknowledgements</h4>
+                   <p class="m-text-thin m-text-spaced m-opacity-mini"> context context contextcontextcontext </p>
+                </div>
+            </div>
+        </div>
+        <div class="ui inverted section divider"></div>
+        <div class="ui center aligned container">
+            <p class="m-text-thin m-text-spaced m-opacity-tiny">Free & Open Source Demo 2021</p>
+        </div>
+    </footer>
+
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('.menu.toggle').click(function () {
+            $('.m-item').toggleClass('m-mobile-hide');
+        })
+    });
+
+    $('.qq').popup();
+    $('.wechat').popup({
+        popup: ($('.wechat-qr.popup')),
+        on: 'hover',
+        position: 'bottom center'
+    });
+</script>
+</body>
+</html>
