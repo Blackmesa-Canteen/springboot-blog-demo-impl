@@ -1,4 +1,4 @@
-package com.learn.blog_demo.pojo;
+package com.learn.blog_demo.entity;
 
 import javax.persistence.*;
 import java.util.ArrayList;

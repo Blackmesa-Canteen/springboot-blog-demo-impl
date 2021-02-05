@@ -10,11 +10,11 @@
 <body>
 
     <!-- 导航 Nav -->
-    <nav th:replace="admin/_fragments :: menu(1)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small" >
+    <nav th:replace="admin/_fragments :: menu(0)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small" >
         <div class="ui container">
             <div class="ui inverted secondary stackable menu">
                 <h2 class="ui teal header item">Blog Manager</h2>
-                <a href="#" class="active m-item item m-mobile-hide"><i class="home icon"></i>Articles</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="home icon"></i>Articles</a>
                 <a href="#" class="m-item item m-mobile-hide"><i class="idea icon"></i>Categories</a>
                 <a href="#" class="m-item item m-mobile-hide"><i class="tags icon"></i>Labels</a>
                 <div class="right m-item m-mobile-hide menu">
@@ -25,7 +25,7 @@
                         </div>
                         <i class="dropdown icon"></i>
                         <div class="menu">
-                            <a href="#" class="item">Log out</a>
+                            <a href="#" th:href="@{/admin/logout}" class="item">Log out</a>
                         </div>
                     </div>
                 </div>
@@ -36,93 +36,13 @@
         </a>
     </nav>
 
-    <!-- head content selector -->
-    <div class="ui attached pointing menu">
-        <div class="ui container">
-            <div class="right menu">
-                <a href="#" class="item">Publish</a>
-                <a href="#" class="active teal item">Content List</a>
-            </div>
-
-        </div>
-
-    </div>
-
      <!--中间内容 content-->
     <div class="m-padded-tb-big m-container-small">
         <div class="ui container">
-            <form action="#" method="post" class="ui segment form">
-                <div class="inline fields">
-                    <div class="field">
-                        <input type="text" name="title" placeholder="Title...">
-                    </div>
-                    <div class="field">
-                        <div class="ui selection dropdown">
-                            <input type="hidden" name="type">
-                            <i class="dropdown icon"></i>
-                            <div class="default text">Category</div>
-                            <div class="menu">
-                                <div class="item" data-value="1">funny</div>
-                                <div class="item" data-value="2">no funny</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <div class="ui checkbox">
-                            <input type="checkbox" id="recommend" name="recommend">
-                            <label for="recommend">Recommend</label>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <button class="ui teal basic mini button">
-                            <i class="search icon"></i>Search
-                        </button>
-                    </div>
-                </div>
-            </form>
-
-
-            <table class="ui celled table">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Title</th>
-                        <th>Category</th>
-                        <th>Is recommended</th>
-                        <th>Date updated</th>
-                        <th>Operation</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Demo</td>
-                        <td>funny</td>
-                        <td>Yes</td>
-                        <td>1984.11.11 0812</td>
-                        <td>
-                            <a href="#" class="ui mini teal basic button">Edit</a>
-                            <a href="#" class="ui mini red button">Remove</a>
-                        </td>
-                    </tr>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th colspan="6">
-                            <div class="ui mini pagination menu">
-                                <a class="icon item">
-                                    <i class="left chevron icon"></i>
-                                </a>
-                                <a class="icon item">
-                                    <i class="right chevron icon"></i>
-                                </a>
-                            </div>
-                            <a href="#" class="ui mini right floated teal button">Add</a>
-                        </th>
-                    </tr>
-                </tfoot>
-            </table>
-
+            <div class="ui success large raised message">
+                <h2>Success</h2>
+                <p>work work.</p>
+            </div>
         </div>
     </div>
 

@@ -1,4 +1,4 @@
-package com.learn.blog_demo.pojo;
+package com.learn.blog_demo.entity;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ public class User {
     private Long id;
 
     private String nickName;
-    private String userName;
+    private String username;
     private String password;
     private String email;
     private String avatar;
@@ -36,10 +36,10 @@ public class User {
     public User() {
     }
 
-    public User(Long id, String nickName, String userName, String password, String email, String avatar, Integer type, Date createTime, Date updateTime) {
+    public User(Long id, String nickName, String username, String password, String email, String avatar, Integer type, Date createTime, Date updateTime) {
         this.id = id;
         this.nickName = nickName;
-        this.userName = userName;
+        this.username = username;
         this.password = password;
         this.email = email;
         this.avatar = avatar;
@@ -53,7 +53,7 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", nickName='" + nickName + '\'' +
-                ", userName='" + userName + '\'' +
+                ", userName='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", avatar='" + avatar + '\'' +
@@ -79,12 +79,12 @@ public class User {
         this.nickName = nickName;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String userName) {
+        this.username = userName;
     }
 
     public String getPassword() {

@@ -1,4 +1,4 @@
-package com.learn.blog_demo.pojo;
+package com.learn.blog_demo.entity;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -8,11 +8,12 @@ import java.util.List;
  * @author Xiaotian
  * @program spring_boot_blog_demo
  * @description
- * @create 2021-02-05 00:13
+ * @create 2021-02-05 00:11
  */
+
 @Entity
-@Table(name = "t_label")
-public class Label {
+@Table(name = "t_type")
+public class Type {
 
     @Id
     @GeneratedValue
@@ -20,21 +21,21 @@ public class Label {
 
     private String name;
 
-    @ManyToMany(mappedBy = "labels")
+    @OneToMany(mappedBy = "type")
     private List<Blog> blogs = new ArrayList<>();
 
-    public Label() {
+    public Type() {
     }
 
-    public Label(Long id, String name) {
+    public Type(Long id, String name) {
         this.id = id;
         this.name = name;
     }
 
     @Override
     public String toString() {
-        return "Label{" +
-                "id=" + id +
+        return "Type{" +
+                "Id=" + id +
                 ", name='" + name + '\'' +
                 '}';
     }
@@ -47,14 +48,6 @@ public class Label {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public List<Blog> getBlogs() {
         return blogs;
     }
@@ -63,5 +56,11 @@ public class Label {
         this.blogs = blogs;
     }
 
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 }
