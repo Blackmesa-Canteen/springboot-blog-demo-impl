@@ -6,6 +6,8 @@ import com.learn.blog_demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import static com.learn.blog_demo.util.Md5Utils.getSaltverifyMd5AndSha;
+
 /**
  * @author Xiaotian
  * @program spring_boot_blog_demo
@@ -20,7 +22,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User checkUser(String username, String password) {
-        User user = userRepository.findByUsernameAndPassword(username, password);
-        return user;
+        User user = userRepository.findByUsername(username);
+        String record = user.getPassword();
+        if (getSaltverifyMd5AndSha(password, record)) {
+            return user;
+        }
+        return null;
     }
 }
