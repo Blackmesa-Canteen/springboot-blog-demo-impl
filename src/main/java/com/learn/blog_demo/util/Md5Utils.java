@@ -162,7 +162,7 @@ public class Md5Utils {
 
 
     public static void main(String[] args) {
-        // 原密码
+        // original text
         String plaintext = "admin";
 
         // 获取加盐后的MD5值
