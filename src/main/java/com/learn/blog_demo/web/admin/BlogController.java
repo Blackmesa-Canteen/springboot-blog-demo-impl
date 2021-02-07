@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/admin")
 public class BlogController {
-    @GetMapping("/blogs")
+    @GetMapping("/manager")
     public String list() {
         return "admin/manager";
     }

@@ -23,6 +23,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User checkUser(String username, String password) {
         User user = userRepository.findByUsername(username);
+        if(user == null) {
+            return null;
+        }
+
         String record = user.getPassword();
         if (getSaltverifyMd5AndSha(password, record)) {
             return user;

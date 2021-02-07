@@ -2,7 +2,9 @@ package com.learn.blog_demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 
+//@ServletComponentScan(basePackages ="com.learn.blog_demo.interceptor.SqlInjectFilter")
 @SpringBootApplication
 public class BlogDemoApplication {
 

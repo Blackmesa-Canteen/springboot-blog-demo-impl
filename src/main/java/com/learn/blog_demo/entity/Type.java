@@ -1,6 +1,9 @@
 package com.learn.blog_demo.entity;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +22,7 @@ public class Type {
     @GeneratedValue
     private Long id;
 
+    @NotEmpty(message = "NOT NULL!")
     private String name;
 
     @OneToMany(mappedBy = "type")

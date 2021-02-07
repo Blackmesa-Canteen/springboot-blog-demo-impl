@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+    <title>New Category</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../../static/css/my.css" th:href="@{/css/my.css}">
+</head>
+<body>
+
+    <!-- 导航 Nav -->
+    <nav th:replace="admin/_fragments :: menu(1)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small" >
+        <div class="ui container">
+            <div class="ui inverted secondary stackable menu">
+                <h2 class="ui teal header item">Blog Manager</h2>
+                <a href="#" class="m-item item m-mobile-hide"><i class="home icon"></i>Articles</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="idea icon"></i>Categories</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="tags icon"></i>Labels</a>
+                <div class="right m-item m-mobile-hide menu">
+                    <div class="ui dropdown item">
+                        <div class="text">
+                            <img class="ui avatar image" src="https://unsplash.it/100/100?image=992">
+                            Gordon Freeman
+                        </div>
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <a href="#" class="item">Log out</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="ui menu toggle black button icon m-right-top m-mobile-show">
+            <i class="sidebar icon"></i>
+        </a>
+    </nav>
+
+    <!-- head content selector -->
+    <div class="ui attached pointing menu">
+        <div class="ui container">
+            <div class="right menu">
+                <a href="#" class="active teal item">Publish</a>
+                <a href="#" class="item">Content List</a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <br>
+    <br>
+     <!--中间内容 content-->
+    <div class="m-padded-tb-big m-container-small">
+        <div class="ui container">
+            <form action="#" method="post" th:action="@{/admin/categories}" th:object="${type}" class="ui form">
+                <div class="required field">
+                    <div class="ui left labeled input">
+                        <label class="ui teal basic label">Category</label>
+                        <input id="name" type="text" name="name" placeholder="Categoty name" th:value="*{name}">
+                    </div>
+                </div>
+
+
+
+                <!--/*/
+                <div class="ui negative message" th:if="${#fields.hasErrors('name')}">
+                    <i class="close icon"></i>
+                    <div class="header">ERROR: </div>
+                    <p th:errors="*{name}">Invalid name</p>
+                </div>
+                /*/-->
+
+                <div class="ui error message"></div>
+                <div class="ui right aligned container">
+                    <button type="button" class="ui button" onclick="window.history.go(-1)">Back</button>
+                    <button class="ui teal submit button">Commit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <!-- bottom footer -->
+    <footer th:replace="admin/_fragments :: footer" class="ui inverted vertical segment m-padded-tb-massive">
+        <div class="ui center aligned container">
+            <div class="ui inverted divided stackable grid">
+                <div class="three wide column">
+                    <div class="ui inverted link list">
+                        <div class="item">
+                            <img src="../../static/images/demo1.jpg" class="ui rounded image" alt="" style="width: 80px">
+                        </div>
+                    </div>
+                </div>
+                <div class="three wide column">
+                    <h4 class="ui inverted header">Latest blogs</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item">content1</a>
+                        <a href="#" class="item">content2</a>
+                        <a href="#" class="item">content3</a>
+                    </div>
+                </div>
+                <div class="three wide column">
+                    <h4 class="ui inverted header">Contect Me</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item">content1</a>
+                        <a href="#" class="item">content2</a>
+                        <a href="#" class="item">content3</a>
+                    </div>
+                </div>
+                <div class="seven wide column">
+                    <h4 class="ui inverted header">Acknowledgements</h4>
+                   <p class="m-text-thin m-text-spaced m-opacity-mini"> context context contextcontextcontext </p>
+                </div>
+            </div>
+        </div>
+        <div class="ui inverted section divider"></div>
+        <div class="ui center aligned container">
+            <p class="m-text-thin m-text-spaced m-opacity-tiny">Free & Open Source Demo 2021</p>
+        </div>
+    </footer>
+
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script><script></script>
+<script>
+    $(document).ready(function(){
+        $('.menu.toggle').click(function () {
+            $('.m-item').toggleClass('m-mobile-hide');
+        })
+    });
+
+    $('.ui.dropdown').dropdown();
+
+    $('.ui.form').form({
+        fields : {
+            title : {
+                identifier: 'name(invalid)',
+                rules: [{
+                    type : 'empty',
+                    prompt: 'Category name needs input'
+                }]
+            }
+        }
+    });
+</script>
+</body>
+</html>
