@@ -1,6 +1,7 @@
 package com.learn.blog_demo.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,7 @@ public class Label {
     @GeneratedValue
     private Long id;
 
+    @NotEmpty(message = "NOT NULL!")
     private String name;
 
     @ManyToMany(mappedBy = "labels")
