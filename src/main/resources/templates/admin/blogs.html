@@ -51,7 +51,7 @@
      <!--中间内容 content-->
     <div class="m-padded-tb-big m-container-small">
         <div class="ui container">
-            <form action="#" method="post" class="ui secondary segment form">
+            <div class="ui secondary segment form">
                 <input type="hidden" name="page">
                 <div class="inline fields">
                     <div class="field">
@@ -63,8 +63,10 @@
                             <i class="dropdown icon"></i>
                             <div class="default text">Category</div>
                             <div class="menu">
-                                <div class="item" data-value="1">funny</div>
+                                <div th:each="type : ${types}" class="item" data-value="1" th:data-value="${type.id}" th:text="${type.name}">funny</div>
+                                <!--/*-->
                                 <div class="item" data-value="2">no funny</div>
+                                <!--*/-->
                             </div>
                         </div>
                     </div>
@@ -75,12 +77,12 @@
                         </div>
                     </div>
                     <div class="field">
-                        <button class="ui teal basic mini button">
+                        <button type="button" id="search-btn" class="ui teal basic mini button">
                             <i class="search icon"></i>Search
                         </button>
                     </div>
                 </div>
-            </form>
+            </div>
 
             <div id="table-container">
                 <table th:fragment="blogList" class="ui compact teal table">
@@ -185,13 +187,17 @@
         loaddata();
     }
 
+    $("#search-btn").click(function (){
+        loaddata();
+    });
+
     function loaddata() {
-        $("#table-container".load(/*[[@{/admin/blogs/search}]]*/"/admin/blogs/search",{
+        $("#table-container").load(/*[[@{/admin/blogs/search}]]*/"/admin/blogs/search",{
             title : $("[name='title']").val(),
             typeId : $("[name='typeId']").val(),
             recommend : $("[name='recommend']").prop('checked'),
             page : $("[name='page']").val()
-        }));
+        });
     }
 </script>
 </body>

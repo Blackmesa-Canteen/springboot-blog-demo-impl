@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 /**
  * @author Xiaotian
@@ -47,6 +48,13 @@ public class CategoryServiceImpl implements CategoryService {
     @Transactional
     public Page<Type> listType(Pageable pageable) {
         return typeRepository.findAll(pageable);
+    }
+
+    @Override
+    @Transactional
+    public List<Type> listType() {
+
+        return typeRepository.findAll();
     }
 
     @Override

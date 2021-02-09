@@ -5,6 +5,7 @@ import com.learn.blog_demo.entity.Blog;
 import com.learn.blog_demo.entity.Type;
 import com.learn.blog_demo.exceptions.NotFoundException;
 import com.learn.blog_demo.service.BlogService;
+import com.learn.blog_demo.vo.BlogQuery;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -37,7 +38,7 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public Page<Blog> listBlog(Pageable pageable, Blog blog) {
+    public Page<Blog> listBlog(Pageable pageable, BlogQuery blog) {
         return blogRepository.findAll(new Specification<Blog>() {
             @Override
             public Predicate toPredicate(Root<Blog> root, CriteriaQuery<?> cq, CriteriaBuilder cb) {
@@ -46,12 +47,12 @@ public class BlogServiceImpl implements BlogService {
                     predicates.add(cb.like(root.<String>get("title"), "%" + blog.getTitle() + "%"));
                 }
 
-                if (null != blog.getType().getId()) {
-                    predicates.add(cb.equal(root.<Type>get("type").get("id"), blog.getType().getId()));
+                if (null != blog.getTypeId()) {
+                    predicates.add(cb.equal(root.<Type>get("type").get("id"), blog.getTypeId()));
                 }
 
-                if (blog.isRecommended()) {
-                    predicates.add(cb.<Boolean>equal(root.get("isRecommended"), blog.isRecommended()));
+                if (blog.isRecommend()) {
+                    predicates.add(cb.<Boolean>equal(root.get("isRecommended"), blog.isRecommend()));
                 }
 
                 cq.where(predicates.toArray(new Predicate[predicates.size()]));
