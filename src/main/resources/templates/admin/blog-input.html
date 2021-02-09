@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
-    <title>Blog Manager</title>
+    <title>New Blog</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <link rel="stylesheet" href="../../static/css/my.css" th:href="@{/css/my.css}">
     <link rel="stylesheet" href="../../static/lib/editormd/css/editormd.min.css" th:href="@{/lib/editormd/css/editormd.min.css}">
@@ -50,10 +50,10 @@
     </div>
 
      <!--中间内容 content-->
-    <div class="m-padded-tb-big m-container-small">
+    <div class="m-padded-tb-big">
         <div class="ui container">
-            <form action="#" method="post" class="ui form">
-
+            <form id="blog-form" action="#" th:action="@{/admin/blogs}" method="post" class="ui form">
+                <input type="hidden" name="isPublished">
                 <div class="required field">
                     <div class="ui left labeled input">
                         <div class="ui selection compact teal basic dropdown label">
@@ -70,58 +70,28 @@
                     </div>
                 </div>
                 
-                <div class="field">
+                <div class="required field">
                     <div id="md-content" style="z-index: 1 !important;">
-                        <textarea name="content" placeholder="Content..." style="display: none">
-                            [TOC]
-
-#### Disabled options
-
-- TeX (Based on KaTeX);
-- Emoji;
-- Task lists;
-- HTML tags decode;
-- Flowchart and Sequence Diagram;
-
-#### Editor.md directory
-
-    editor.md/
-            lib/
-            css/
-            scss/
-            tests/
-            fonts/
-            images/
-            plugins/
-            examples/
-            languages/
-            editormd.js
-            ...
-
-```html
-&lt;!-- English --&gt;
-&lt;script src="../dist/js/languages/en.js"&gt;&lt;/script&gt;
-
-&lt;!-- 繁體中文 --&gt;
-&lt;script src="../dist/js/languages/zh-tw.js"&gt;&lt;/script&gt;
-```
-                        </textarea>
+                        <textarea name="content" placeholder="Content..." style="display: none"></textarea>
                     </div>
 
                 </div>
                 
                 <div class="two fields">
-                    <div class="field">
+                    <div class="required field">
                         <div class="ui left labeled action input">
                             <label class="ui compact teal basic label">Categories</label>
                             <div class="ui fluid selection dropdown">
-                                <input type="hidden" name = "type">
+                                <input type="hidden" name = "typeId">
                                 <i class="dropdown icon"></i>
                                 <div class="default text">Categories</div>
                                 <div class="menu">
+                                    <div th:each="type : ${types}" class="item" data-value="1" th:data-value="${type.id}" th:text="${type.name}">funny</div>
+                                    <!--/*-->
                                     <div class="item" data-value="1">Funny</div>
                                     <div class="item" data-value="2">Not funny</div>
                                     <div class="item" data-value="3">Default</div>
+                                    <!--*/-->
                                 </div>
                             </div>
                         </div>
@@ -130,23 +100,26 @@
                         <div class="ui left labeled action input">
                             <label class="ui compact teal basic label">Labels</label>
                             <div class="ui fluid multiple search selection dropdown">
-                                <input type="hidden" name="tag">
+                                <input type="hidden" name="labelIds">
                                 <i class="dropdown icon"></i>
                                 <div class="default text">Labels</div>
                                 <div class="menu">
+                                    <div th:each="label : ${labels}" class="item" data-value="1" th:data-value="${label.id}" th:text="${label.name}">funny</div>
+                                    <!--/*-->
                                     <div class="item" data-value="1">机械加工</div>
                                     <div class="item" data-value="2">钳工</div>
                                     <div class="item" data-value="3">铣工</div>
+                                    <!--*/-->
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="field">
+                <div class="required field">
                     <div class="ui left labeled input">
                         <label class="ui teal basic label">Cover Image</label>
-                        <input type="text" name="indexPicture" placeholder="Cover Image Address">
+                        <input type="text" name="firstPicture" placeholder="Cover Image Address">
                     </div>
 
                 </div>
@@ -154,26 +127,26 @@
                 <div class="inline fields">
                     <div class="field">
                         <div class="ui checkbox">
-                            <input id="recommend" type="checkbox" name="recommend" class="hidden">
-                            <label for="recommend">Recommend</label>
+                            <input id="isRecommended" type="checkbox" name="isRecommended" class="hidden">
+                            <label for="isRecommended">Recommend</label>
                         </div>
                     </div>
                     <div class="field">
                         <div class="ui checkbox">
-                            <input id="shareInfo" type="checkbox" name="shareInfo" class="hidden">
-                            <label for="shareInfo">Share Info</label>
+                            <input id="isShared" type="checkbox" name="isShared" class="hidden">
+                            <label for="isShared">Share Info</label>
                         </div>
                     </div>
                     <div class="field">
                         <div class="ui checkbox">
-                            <input id="appreciation" type="checkbox" name="appreciation" class="hidden">
-                            <label for="appreciation">Donation</label>
+                            <input id="isDonated" type="checkbox" name="isDonated" class="hidden">
+                            <label for="isDonated">Donation</label>
                         </div>
                     </div>
                     <div class="field">
                         <div class="ui checkbox">
-                            <input id="comment" type="checkbox" name="comment" class="hidden">
-                            <label for="comment">Comment</label>
+                            <input id="isCommentable" type="checkbox" name="isCommentable" class="hidden">
+                            <label for="isCommentable">Comment</label>
                         </div>
                     </div>
                 </div>
@@ -182,8 +155,8 @@
 
                 <div class="ui right aligned container">
                     <button type="button" class="ui button" onclick="window.history.go(-1)">Back</button>
-                    <button class="ui secondary button">Save</button>
-                    <button class="ui teal button">Publish</button>
+                    <button type="button" id="save-btn" class="ui secondary button">Save</button>
+                    <button type="button" id="publish-btn" class="ui teal button">Publish</button>
                 </div>
             </form>
         </div>
@@ -230,44 +203,77 @@
         </div>
     </footer>
 
-<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script><script></script>
-<script src="../../static/lib/editormd/editormd.min.js" th:src="@{/lib/editormd/editormd.min.js}"/>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script><script></script>
+    <script src="../../static/lib/editormd/editormd.min.js" th:src="@{/lib/editormd/editormd.min.js}"></script>
 
     <script>
-    $(document).ready(function(){
-        $('.menu.toggle').click(function () {
-            $('.m-item').toggleClass('m-mobile-hide');
-        })
-    });
+        $(document).ready(function(){
+            $('.menu.toggle').click(function () {
+                $('.m-item').toggleClass('m-mobile-hide');
+            })
+        });
 
-    $('.ui.dropdown').dropdown();
+        $('.ui.dropdown')
+            .dropdown()
+        ;
 
-    $('.ui.form').form({
-        fields : {
-            title : {
-                identifier: 'title',
-                rules: [{
-                    type : 'empty',
-                    prompt: 'Title needs input'
-                }]
+        $('.ui.form').form({
+            fields : {
+                title : {
+                    identifier: 'title',
+                    rules: [{
+                        type : 'empty',
+                        prompt: 'Title needs input'
+                    }]
+                },
+                content : {
+                    identifier: 'content',
+                    rules: [{
+                        type : 'empty',
+                        prompt: 'Not null'
+                    }]
+                },
+                typeId : {
+                    identifier: 'typeId',
+                    rules: [{
+                        type : 'empty',
+                        prompt: 'Not null'
+                    }]
+                },
+                firstPicture : {
+                    identifier: 'firstPicture',
+                    rules: [{
+                        type : 'empty',
+                        prompt: 'Not null'
+                    }]
+                }
             }
-        }
-    });
-</script>
-<script>
-    // init markdown editor
-    // path    : "../../static/lib/editormd/lib/"
-    var contentEditor;
-    $(function() {
-    contentEditor = editormd("md-content", {
-    width   : "100%",
-    height  : 640,
-    syncScrolling : "single",
-    path    : "/lib/editormd/lib/"
-    });
+        });
 
-    });
-</script>
+        $('#save-btn').click(function () {
+            $('[name="isPublished"]').val(false);
+            $('#blog-form').submit();
+        });
+
+        $('#publish-btn').click(function () {
+            $('[name="isPublished"]').val(true);
+            $('#blog-form').submit();
+        });
+    </script>
+    <script>
+        // init markdown editor
+        // path    : "../../static/lib/editormd/lib/"
+        var contentEditor;
+        $(function() {
+        contentEditor = editormd("md-content", {
+        width   : "100%",
+        height  : 640,
+        syncScrolling : "single",
+        path    : "/lib/editormd/lib/"
+        });
+
+        });
+    </script>
 </body>
 </html>

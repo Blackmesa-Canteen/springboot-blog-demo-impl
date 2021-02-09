@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 /**
  * @author Xiaotian
@@ -46,6 +47,11 @@ public class LabelSeviceImpl implements LabelService {
     @Transactional
     public Page<Label> listLabel(Pageable pageable) {
         return labelRepository.findAll(pageable);
+    }
+
+    @Override
+    public List<Label> listLabel() {
+        return labelRepository.findAll();
     }
 
     @Override

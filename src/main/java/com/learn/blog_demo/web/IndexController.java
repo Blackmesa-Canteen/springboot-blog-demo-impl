@@ -46,10 +46,10 @@ public class IndexController {
         return "Labels";
     }
 
-    @GetMapping("/admin/blog-input")
-    public String blogInput() {
-        return "/admin/blog-input";
-    }
+//    @GetMapping("/admin/blog-input")
+//    public String blogInput() {
+//        return "/admin/blog-input";
+//    }
 
 //    @GetMapping("/{id}/{name}")
 //    public String test(@PathVariable Integer id, @PathVariable String name) {

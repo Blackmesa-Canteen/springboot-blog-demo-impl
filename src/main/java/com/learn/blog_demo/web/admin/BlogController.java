@@ -3,6 +3,7 @@ package com.learn.blog_demo.web.admin;
 import com.learn.blog_demo.entity.Blog;
 import com.learn.blog_demo.service.BlogService;
 import com.learn.blog_demo.service.CategoryService;
+import com.learn.blog_demo.service.LabelService;
 import com.learn.blog_demo.vo.BlogQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -24,11 +25,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin")
 public class BlogController {
 
+    private static final String INPUT = "admin/blog-input";
+    private static final String LIST = "admin/blogs";
+    private static final String REDIRECT_LIST = "dedirect:/admin/blogs";
+
     @Autowired
     private BlogService blogService;
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private LabelService labelService;
 
     @GetMapping("/blogs")
     public String blogs(@PageableDefault(size = 2, sort = {"updateTime"},
@@ -38,7 +46,7 @@ public class BlogController {
 
         model.addAttribute("types", categoryService.listType());
         model.addAttribute("page", blogService.listBlog(pageable, blog));
-        return "/admin/blogs";
+        return "admin/blogs";
     }
 
     @PostMapping("/blogs/search")
@@ -48,6 +56,15 @@ public class BlogController {
                         Model model) {
         model.addAttribute("page", blogService.listBlog(pageable, blog));
         return "/admin/blogs :: blogList";
+    }
+
+
+    @GetMapping("blogs/input")
+    public String input(Model model) {
+        model.addAttribute("blog", new Blog());
+        model.addAttribute("types", categoryService.listType());
+        model.addAttribute("labels", labelService.listLabel());
+        return "admin/blog-input";
     }
 
 
