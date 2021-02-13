@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -52,6 +53,23 @@ public class LabelSeviceImpl implements LabelService {
     @Override
     public List<Label> listLabel() {
         return labelRepository.findAll();
+    }
+
+    @Override
+    public List<Label> listLabel(String ids) {
+        return labelRepository.findAllById(convertToList(ids));
+    }
+
+    private List<Long> convertToList(String ids) {
+        List<Long> list = new ArrayList<>();
+        if(!("".equals(ids)) && ids != null) {
+            String[] idarray = ids.split(",");
+            for (int i = 0; i < idarray.length; i++) {
+                list.add(new Long(idarray[i]));
+            }
+        }
+
+        return list;
     }
 
     @Override

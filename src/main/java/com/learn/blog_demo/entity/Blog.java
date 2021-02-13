@@ -21,21 +21,25 @@ public class Blog {
     private Long id;
 
     private String title;
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
     private String content;
     private String firstPicture;
     private String flag;
-    private Integer views;
+    private Integer views = 0;
+    @Transient
+    private String labelIds;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateTime;
 
-    private boolean isCommentable;
-    private boolean isShared;
-    private boolean isDonated;
-    private boolean isPublished;
-    private boolean isRecommended;
+    private boolean commented;
+    private boolean shared;
+    private boolean donated;
+    private boolean published;
+    private boolean recommended;
 
     @ManyToOne
     private Type type;
@@ -52,20 +56,25 @@ public class Blog {
     public Blog() {
     }
 
-    public Blog(Long id, String title, String content, String firstPicture, String flag, Integer views, Date createTime, Date updateTime, boolean isCommentable, boolean isShared, boolean isDonated, boolean isPublished, boolean isRecommended) {
+    public Blog(Long id, String title, String content, String firstPicture, String flag, Integer views, String labelIds, Date createTime, Date updateTime, boolean commented, boolean shared, boolean donated, boolean published, boolean recommended, Type type, List<Label> labels, User user, List<Comment> comments) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.firstPicture = firstPicture;
         this.flag = flag;
         this.views = views;
+        this.labelIds = labelIds;
         this.createTime = createTime;
         this.updateTime = updateTime;
-        this.isCommentable = isCommentable;
-        this.isShared = isShared;
-        this.isDonated = isDonated;
-        this.isPublished = isPublished;
-        this.isRecommended = isRecommended;
+        this.commented = commented;
+        this.shared = shared;
+        this.donated = donated;
+        this.published = published;
+        this.recommended = recommended;
+        this.type = type;
+        this.labels = labels;
+        this.user = user;
+        this.comments = comments;
     }
 
     @Override
@@ -77,13 +86,18 @@ public class Blog {
                 ", firstPicture='" + firstPicture + '\'' +
                 ", flag='" + flag + '\'' +
                 ", views=" + views +
+                ", labelIds='" + labelIds + '\'' +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
-                ", isCommentable=" + isCommentable +
-                ", isShared=" + isShared +
-                ", isDonated=" + isDonated +
-                ", isPublished=" + isPublished +
-                ", isRecommended=" + isRecommended +
+                ", commented=" + commented +
+                ", shared=" + shared +
+                ", donated=" + donated +
+                ", published=" + published +
+                ", recommended=" + recommended +
+                ", type=" + type +
+                ", labels=" + labels +
+                ", user=" + user +
+                ", comments=" + comments +
                 '}';
     }
 
@@ -151,44 +165,44 @@ public class Blog {
         this.updateTime = updateTime;
     }
 
-    public boolean isCommentable() {
-        return isCommentable;
+    public boolean isCommented() {
+        return commented;
     }
 
-    public void setCommentable(boolean commentable) {
-        isCommentable = commentable;
+    public void setCommented(boolean commented) {
+        this.commented = commented;
     }
 
     public boolean isShared() {
-        return isShared;
+        return shared;
     }
 
     public void setShared(boolean shared) {
-        isShared = shared;
+        this.shared = shared;
     }
 
     public boolean isDonated() {
-        return isDonated;
+        return donated;
     }
 
     public void setDonated(boolean donated) {
-        isDonated = donated;
+        this.donated = donated;
     }
 
     public boolean isPublished() {
-        return isPublished;
+        return published;
     }
 
     public void setPublished(boolean published) {
-        isPublished = published;
+        this.published = published;
     }
 
     public boolean isRecommended() {
-        return isRecommended;
+        return recommended;
     }
 
     public void setRecommended(boolean recommended) {
-        isRecommended = recommended;
+        this.recommended = recommended;
     }
 
     public Type getType() {
@@ -221,5 +235,13 @@ public class Blog {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public String getLabelIds() {
+        return labelIds;
+    }
+
+    public void setLabelIds(String labelIds) {
+        this.labelIds = labelIds;
     }
 }

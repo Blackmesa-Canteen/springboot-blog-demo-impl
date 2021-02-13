@@ -40,8 +40,8 @@
     <div class="ui attached pointing menu">
         <div class="ui container">
             <div class="right menu">
-                <a href="#" class="item">Publish</a>
-                <a href="#" class="active teal item">Content List</a>
+                <a href="#" th:href="@{/admin/blogs/input}" class="item">Publish</a>
+                <a href="#" th:href="@{/admin/blogs}" class="active teal item">Content List</a>
             </div>
 
         </div>
@@ -65,7 +65,7 @@
                             <div class="menu">
                                 <div th:each="type : ${types}" class="item" data-value="1" th:data-value="${type.id}" th:text="${type.name}">funny</div>
                                 <!--/*-->
-                                <div class="item" data-value="2">no funny</div>
+                                <div class="item" data-value="1">no funny</div>
                                 <!--*/-->
                             </div>
                         </div>
@@ -91,7 +91,8 @@
                         <th></th>
                         <th>Title</th>
                         <th>Category</th>
-                        <th>Is recommended</th>
+                        <th>recommended</th>
+                        <th>Status</th>
                         <th>Time updated</th>
                         <th>Operation</th>
                     </tr>
@@ -101,7 +102,8 @@
                         <td th:text="${iterStat.count}">1</td>
                         <td th:text="${blog.title}">Demo</td>
                         <td th:text="${blog.type.name}">funny</td>
-                        <td th:text="${blog.isRecommended} ? 'Yes' : 'No'">Yes</td>
+                        <td th:text="${blog.recommended} ? 'Yes' : 'No'">Yes</td>
+                        <td th:text="${blog.published} ? 'Published': 'Draft'">Yes</td>
                         <td th:text="${blog.updateTime}">1984.11.11 0812</td>
                         <td>
                             <a href="#" th:href="@{/admin/blogs/{id}/input(id=${blog.id})}" class="ui mini teal basic button">Edit</a>
@@ -111,7 +113,7 @@
                     </tbody>
                     <tfoot>
                     <tr>
-                        <th colspan="6">
+                        <th colspan="7">
                             <div class="ui mini pagination menu" th:if="${page.totalPages}>1">
                                 <a onclick="page(this)" th:attr="data-page=${page.number}-1" th:unless="${page.first}" class="icon item">
                                     <i class="left chevron icon"></i>
@@ -125,6 +127,14 @@
                     </tr>
                     </tfoot>
                 </table>
+
+
+                <div class="ui success message" th:unless="${#strings.isEmpty(message)}">
+                    <i class="close icon"></i>
+                    <div class="header">Message</div>
+                    <p th:text="${message}"> done </p>
+                </div>
+
             </div>
 
         </div>
@@ -180,6 +190,13 @@
         })
     });
 
+    $('.message .close')
+        .on('click', function () {
+        $(this)
+            .closest('.message')
+            .transition('fade');
+    });
+
     $('.ui.dropdown').dropdown();
 
     function page(obj) {
@@ -188,6 +205,7 @@
     }
 
     $("#search-btn").click(function (){
+        $("[name='page']").val(0);
         loaddata();
     });
 

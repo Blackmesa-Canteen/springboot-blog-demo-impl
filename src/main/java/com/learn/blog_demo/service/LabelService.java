@@ -18,6 +18,8 @@ public interface LabelService {
 
     List<Label> listLabel();
 
+    List<Label> listLabel(String ids);
+
     Label updateLabel(Long id, Label label);
 
     void deleteLabel(Long id);

@@ -1,4 +1,4 @@
-package com.learn.blog_demo.interceptor;
+package com.learn.blog_demo.util;
 
 
 import org.springframework.stereotype.Component;
