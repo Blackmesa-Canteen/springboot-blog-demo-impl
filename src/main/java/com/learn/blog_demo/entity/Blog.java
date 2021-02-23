@@ -77,6 +77,31 @@ public class Blog {
         this.comments = comments;
     }
 
+    private String labelsToIds(List<Label> labels) {
+        if(!labels.isEmpty()) {
+            StringBuffer ids = new StringBuffer();
+            // skip the first element then add commas
+            boolean flag = false;
+
+            for(Label label : labels) {
+                if(flag) {
+                    ids.append(",");
+                } else {
+                    flag = true;
+                }
+                ids.append(label.getId());
+            }
+
+            return ids.toString();
+        } else {
+            return labelIds;
+        }
+    }
+
+    public void init() {
+        this.labelIds = labelsToIds(this.getLabels());
+    }
+
     @Override
     public String toString() {
         return "Blog{" +
